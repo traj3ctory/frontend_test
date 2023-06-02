@@ -9,7 +9,7 @@ interface IProps {}
 
 const Login:FC<IProps> = () => {
   return (
-    <div>Login</div>
+    <div className=''>Login Page</div>
    )
  }
 
