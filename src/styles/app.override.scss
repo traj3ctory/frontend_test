@@ -12,7 +12,7 @@ body {
   cursor: pointer;
 }
 
-section.not_found{
+section.not_found {
   background-color: $primary;
   min-height: 100vh;
   height: 100%;
@@ -22,23 +22,46 @@ section.not_found{
   align-items: center;
   color: #fff;
   text-align: center;
-  a{
+  a {
     text-decoration: none;
     color: #fff;
     transition: all 0.3s ease-in-out;
-    &:hover{
+    &:hover {
       text-decoration: underline;
       margin-left: -0.5rem;
     }
   }
 }
+
+.disabled {
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+
+button.login {
+  position: relative;
+  
+  i.bi.bi-arrow-repeat {
+    animation: spin 1s linear infinite;
+  }
+}
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
 /*
  * ====================
  * Override Bootstrap Input
  * ====================
  */
 
-div.form-group { 
+div.form-group {
   div.input-group {
     span.input-group-text {
       background-color: transparent;

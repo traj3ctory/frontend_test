@@ -14,7 +14,7 @@ interface IProps {}
 
 const Register: FC<IProps> = () => {
   const [client, setClient] = useState<RegisterClientI>({
-    email: "",
+    university_email: "",
     first_name: "",
     last_name: "",
     grad_year: "",
@@ -58,11 +58,11 @@ const Register: FC<IProps> = () => {
             </span>
             <input
               type="email"
-              name="email"
-              id="email"
+              name="university_email"
+              id="university_email"
               className="form-control"
               placeholder="example@kumail.com"
-              value={client.email}
+              value={client.university_email}
               onChange={handleChange}
               aria-label="Email"
               aria-describedby="email_icon"

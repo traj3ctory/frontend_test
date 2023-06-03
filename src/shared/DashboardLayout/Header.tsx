@@ -1,14 +1,17 @@
 import { FC, useState } from "react";
 import asset from "@/assets/asset1.jpg";
 
-interface IProps {}
+interface IProps {
+  toggleLeft: () => void;
+  toggleRight: () => void;
+}
 
 /**
  * @author traj3ctory
  * @function @Header
  **/
 
-const Header: FC<IProps> = () => {
+const Header: FC<IProps> = ({ toggleLeft, toggleRight }) => {
   const [search, setSearch] = useState<string>("");
 
   return (

@@ -1,53 +1,3 @@
-// import {
-//   BrowserRouter as Router,
-//   Routes,
-//   Route,
-//   Navigate,
-// } from "react-router-dom";
-
-// // Import your components for login, register, and dashboard
-// import Login from "./pages/Auth/Login";
-// import Register from "./pages/Auth/Register";
-// import Dashboard from "./pages/Dashboard";
-
-// // Define a custom private route component for authenticated routes
-// interface PrivateRouteProps {
-//   element: JSX.Element;
-//   path: string;
-// }
-
-// const PrivateRoute: React.FC<PrivateRouteProps> = ({
-//   element: Component,
-//   ...rest
-// }) => {
-//   // Replace this with your authentication logic
-//   const isAuthenticated = true; // Example: Assume the user is authenticated
-
-//   return (
-//     <Route
-//       {...rest}
-//       element={isAuthenticated ? Component : <Navigate to="/login" replace />}
-//     />
-//   );
-// };
-
-// const App: React.FC = () => {
-//   return (
-//     <Router>
-//       <Routes>
-//         {/* Public routes */}
-//         <Route path="/login" element={<Login />} />
-//         <Route path="/register" element={<Register />} />
-
-//         {/* Authenticated route */}
-//         <PrivateRoute path="/dashboard" element={<Dashboard />} />
-//       </Routes>
-//     </Router>
-//   );
-// };
-
-// export default App;
-
 import {
   BrowserRouter as Router,
   Route,
@@ -55,11 +5,13 @@ import {
   Navigate,
 } from "react-router-dom";
 
-// Import your components for login, register, and dashboard
 import Login from "@/pages/Auth/Login";
 import Register from "@/pages/Auth/Register";
-import Dashboard from "@/pages/Dashboard";
+import Dashboard from "@/pages/Client/Dashboard";
+import Profile from "@/pages/Client/Profile";
 import NotFound from "@/pages/NotFound";
+
+import { getValue, ClientToken } from "@/helpers";
 import "@/styles/main.scss";
 
 // Define a custom private route component for authenticated routes
@@ -70,7 +22,7 @@ interface PrivateRouteProps {
 
 const PrivateRoute: React.FC<PrivateRouteProps> = ({ path, children }) => {
   // Replace this with your authentication logic
-  const isAuthenticated = true; // Example: Assume the user is authenticated
+  const isAuthenticated = getValue(ClientToken) || false; // Example: Assume the user is authenticated
 
   return isAuthenticated ? children : <Navigate to="/login" replace />;
 };
@@ -82,9 +34,9 @@ const App: React.FC = () => {
         {/* Public routes */}
         <Route index path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-        {/* <Route path="/dashboard" element={<Dashboard />} /> */}
         <Route path="*" element={<NotFound />} />
-        {/* Redirect '/' to '/login' */}
+        
+        
         <Route path="/" element={<Navigate to="/login" replace />} />
         {/* Authenticated route */}
         <Route
@@ -92,6 +44,14 @@ const App: React.FC = () => {
           element={
             <PrivateRoute path="/dashboard">
               <Dashboard />
+            </PrivateRoute>
+          }
+        />
+          <Route
+          path="/profile"
+          element={
+            <PrivateRoute path="/profile">
+              <Profile />
             </PrivateRoute>
           }
         />

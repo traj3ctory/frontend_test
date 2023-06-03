@@ -1,16 +1,27 @@
-import { FC } from 'react'
+import { FC } from "react";
 
-interface IProps {}
+interface IProps {
+  toggleLeft: () => void;
+  toggleRight: () => void;
+  rightNav: boolean;
+}
 
 /**
-* @author traj3ctory
-* @function @Header
-**/
+ * @author traj3ctory
+ * @function @Header
+ **/
 
-const Header:FC<IProps> = () => {
+const Header: FC<IProps> = ({ toggleLeft, toggleRight, rightNav }) => {
   return (
-    <div>Header</div>
-   )
- }
+    <footer className="footer">
+      <div className="side_nav_toggle container">
+        <i className="bi bi-chevron-bar-right" onClick={toggleLeft} />
+        {rightNav && (
+          <i className="bi bi-chevron-bar-left" onClick={toggleRight} />
+        )}
+      </div>
+    </footer>
+  );
+};
 
- export default Header;
+export default Header;

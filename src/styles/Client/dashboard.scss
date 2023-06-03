@@ -1,0 +1,50 @@
+div.dashboard_content {
+  font-size: 0.9rem;
+  h5 {
+    font-size: 1rem;
+    font-weight: 500;
+  }
+  small,
+  span {
+    font-size: 0.8rem;
+  }
+
+  div.body {
+    div.img_group {
+      display: flex;
+      align-items: center;
+      img:not(:first-child) {
+        margin-left: -8px; // Adjust the negative margin value as needed
+      }
+      div.img_look_alike {
+        width: 1.6rem;
+        height: 1.6rem;
+        border-radius: 50%;
+        background-color: #555;
+        color: $font_color;
+        font-size: 0.8rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-left: -8px;
+      }
+    }
+  }
+
+  div.comment_section {
+    position: relative;
+
+    div.icon {
+      position: absolute;
+      top: 0.5rem;
+      right: 1rem;
+      display: flex;
+      gap: 0.5rem;
+    }
+  }
+
+  button.btn {
+    background-color: #0471ee1e;
+    border-color: #0471ee1e;
+  }
+}

@@ -1,10 +1,10 @@
 export interface LoginClientI {
-    email: string;
+    university_email: string;
     password: string;
   }
 
 export interface RegisterClientI {
-  email: string;
+  university_email: string;
   first_name: string;
   last_name: string;
   grad_year: string;

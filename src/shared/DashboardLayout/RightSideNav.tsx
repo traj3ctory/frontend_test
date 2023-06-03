@@ -3,22 +3,24 @@ import { CoursesI, ConnectionsI } from "@/types";
 import { coursesData, connectionsData } from "./DemoData";
 import asset from "@/assets/asset1.jpg";
 
-interface IProps {}
+interface IProps {
+  display: boolean;
+}
 
 /**
  * @author traj3ctory
  * @function @RightSideNav
  **/
 
-const RightSideNav: FC<IProps> = () => {
+const RightSideNav: FC<IProps> = ({ display }) => {
   const [search, setSearch] = useState<string>("");
 
   return (
-    <aside className="right_nav">
+    <aside className={`right_nav px-3 rounded-3 pt-3 ${display && "right_expand"}`}>
       <section className="courses">
         <div className="title">
           <h5>Courses</h5>
-          <span className="cursor_pointer text-primary">Sel All</span>
+          <small className="cursor_pointer text-primary">See All</small>
         </div>
         {coursesData.map((el: CoursesI, i: number) => {
           return (
@@ -30,7 +32,7 @@ const RightSideNav: FC<IProps> = () => {
                   <small className="text_gray">{el.code}</small>
                 </div>
               </div>
-              <span className="cursor_pointer text-primary">View</span>
+              <small className="cursor_pointer text-primary">View</small>
             </div>
           );
         })}

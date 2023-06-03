@@ -56,7 +56,7 @@ const Request = async (
         url,
         data,
         headers: {
-            'Content-Type': contentType || "application/json",
+            'Content-Type': contentType || 'application/json',
         },
     };
 

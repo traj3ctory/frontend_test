@@ -3,6 +3,7 @@ export interface RouteI {
     exact: boolean;
     name: string;
     icon: string;
+    comingSoon: boolean;
 }
 
 export interface CoursesI {

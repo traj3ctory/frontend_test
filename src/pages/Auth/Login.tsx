@@ -1,9 +1,10 @@
 import { FC, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import AuthLayout from "@/shared/AuthLayout";
 import { LoginClientI } from "@/types";
-import { RegisterPage } from "@/helpers";
+import { RegisterPage, storeValue, ClientToken, ClientDetail } from "@/helpers";
+import Request from "@/helpers/Request";
 
 interface IProps {}
 
@@ -13,10 +14,14 @@ interface IProps {}
  **/
 
 const Login: FC<IProps> = () => {
+  const [showPassword, setShowPassword] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const [client, setClient] = useState<LoginClientI>({
-    email: "",
-    password: "",
+    university_email: "urooj@mycampusroots.com",
+    password: "Urooj@1100",
   });
+
+  const navigate = useNavigate();
 
   /**
    * @function handlePasswordToggle
@@ -25,22 +30,24 @@ const Login: FC<IProps> = () => {
    */
 
   const handlePasswordToggle = () => {
-    const passwordInput = document.getElementById(
-      "password"
-    ) as HTMLInputElement;
-    const passwordIcon = document.getElementById(
-      "password_toggle_icon"
-    ) as HTMLElement;
+    setShowPassword((prevShowPassword) => !prevShowPassword);
 
-    if (passwordInput.type === "password") {
-      passwordInput.type = "text";
-      passwordIcon.classList.remove("bi-eye");
-      passwordIcon.classList.add("bi-eye-slash");
-      return;
-    }
-    passwordInput.type = "password";
-    passwordIcon.classList.remove("bi-eye-slash");
-    passwordIcon.classList.add("bi-eye");
+    // const passwordInput = document.getElementById(
+    //   "password"
+    // ) as HTMLInputElement;
+    // const passwordIcon = document.getElementById(
+    //   "password_toggle_icon"
+    // ) as HTMLElement;
+
+    // if (passwordInput.type === "password") {
+    //   passwordInput.type = "text";
+    //   passwordIcon.classList.remove("bi-eye");
+    //   passwordIcon.classList.add("bi-eye-slash");
+    //   return;
+    // }
+    // passwordInput.type = "password";
+    // passwordIcon.classList.remove("bi-eye-slash");
+    // passwordIcon.classList.add("bi-eye");
   };
 
   /**
@@ -62,9 +69,27 @@ const Login: FC<IProps> = () => {
    * @returns void
    * @description This function handles the form submission
    */
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(client);
+
+    try {
+      setIsLoading(true);
+      const resp = await Request("auth/login", "POST", client);
+      const { token, user } = resp.data;
+      storeValue(ClientToken, token);
+      storeValue(ClientDetail, JSON.stringify(user));
+      alert("Success, Redirecting...");
+      navigate("/dashboard");
+    } catch (error: any) {
+      console.log(error);
+      const message =
+        error?.response?.message ||
+        error?.message ||
+        "Something went wrong !!!";
+      alert(message);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -82,15 +107,16 @@ const Login: FC<IProps> = () => {
             </span>
             <input
               type="email"
-              name="email"
-              id="email"
+              name="university_email"
+              id="university_email"
               className="form-control"
               placeholder="Enter your email"
-              value={client.email}
+              value={client.university_email}
               onChange={handleChange}
               aria-label="Email"
               aria-describedby="email_icon"
               autoComplete="off"
+              required
             />
           </div>
         </div>
@@ -102,7 +128,7 @@ const Login: FC<IProps> = () => {
               <i className="bi bi-lock text_gray" />
             </span>
             <input
-              type="password"
+              type={showPassword ? "text" : "password"}
               name="password"
               id="password"
               className="form-control br"
@@ -112,19 +138,28 @@ const Login: FC<IProps> = () => {
               aria-label="Password"
               aria-describedby="password_icon"
               autoComplete="off"
+              required
             />
             <span
               className="input-group-text bl cursor_pointer"
               onClick={handlePasswordToggle}
               id="password_toggle"
             >
-              <i className="bi bi-eye text_gray" id="password_toggle_icon" />
+              <i
+                className={`text_gray bi ${
+                  showPassword ? "bi-eye-slash" : "bi-eye"
+                }`}
+                id="password_toggle_icon"
+              />
             </span>
           </div>
         </div>
 
-        <button className="btn btn-primary w-100 text-center py-2 rounded-1 mt-3">
-          Login
+        <button
+          disabled={isLoading}
+          className="login btn btn-primary w-100 text-center py-2 rounded-1 mt-3"
+        >
+          {isLoading && <i className="bi bi-arrow-repeat" />}&nbsp;Login
         </button>
       </form>
 
