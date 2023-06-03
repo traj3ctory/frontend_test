@@ -8,6 +8,12 @@ import {
     storeValue, getValue, removeValue
 } from './Storage';
 
+import {
+    LoginPage,
+    RegisterPage,
+    DashboardPage,
+} from './Routes';
+
 export {
     PROJECT_TITLE,
     ClientToken,
@@ -16,4 +22,7 @@ export {
     storeValue,
     getValue,
     removeValue,
+    LoginPage,
+    RegisterPage,
+    DashboardPage,
 }

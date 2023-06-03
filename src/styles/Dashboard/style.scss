@@ -1,0 +1,208 @@
+section.dashboard_layout {
+  header.header {
+    background-color: $primary;
+    width: 100%;
+    height: $header_height;
+    nav {
+      color: $font_color;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 100%;
+
+      div.search_bar {
+        width: 30%;
+        span.input-group-text {
+          background-color: transparent;
+          color: #ffffff;
+          font-size: 0.9rem;
+          padding: 0.5rem 0.75rem;
+          &.br {
+            border-right: none;
+          }
+          &.bl {
+            border-left: none;
+          }
+        }
+        input.form-control {
+          background-color: transparent;
+          color: white;
+
+          &.bl {
+            border-left: none;
+          }
+          &::placeholder {
+            color: white;
+          }
+        }
+      }
+    }
+  }
+
+  div.wrapper {
+    width: 100%;
+    position: relative;
+    background-color: #eeeeee;
+    padding-top: 1rem;
+
+    aside.left_nav {
+      width: $left_width;
+      position: fixed;
+      z-index: 6;
+      top: $header_height;
+      left: 0;
+      min-height: calc(100vh - $header_height);
+      height: 100%;
+      overflow-y: auto;
+      background-color: #ffffff;
+      box-shadow: 10px 0 10px -5px rgba(185, 185, 185, 0.5);
+
+      ul {
+        padding-left: 0;
+        li {
+          list-style-type: none;
+          padding: 0.5rem 1rem;
+          border-radius: 0.35rem;
+          margin-bottom: 1.125rem;
+          color: darken($color: $font_color, $amount: 60);
+          cursor: pointer;
+          a {
+            text-decoration: none;
+            color: darken($color: $font_color, $amount: 60);
+          }
+          &:hover,
+          &.active,
+          &:hover a,
+          &.active a {
+            i.bi {
+              color: #ffffff;
+            }
+            color: #ffffffcf;
+            background-color: $primary;
+          }
+        }
+      }
+    }
+
+    main.content {
+      width: $main_width;
+      margin-left: $left_width;
+      margin-right: $right_width;
+      min-height: calc(100vh - $header_height);
+      height: 100%;
+    }
+
+    aside.right_nav {
+      width: $right_width;
+      position: fixed;
+      z-index: 5;
+      min-height: calc(100vh - $header_height);
+      height: 100%;
+      overflow-y: auto;
+      top: $header_height;
+      right: 0;
+      margin-top: 1rem;
+      background-color: #ffffff;
+      padding: 1rem 1.5rem;
+      box-shadow: 10px 0 10px 5px rgba(185, 185, 185, 0.5);
+
+      section.courses {
+        div.title {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          border-bottom: 1px solid #ddd;
+        }
+        div.body {
+          display: flex;
+          justify-content: space-between;
+          align-items: flex-end;
+          padding-top: 1rem;
+          padding-bottom: 1rem;
+          border-bottom: 1px solid #eeeeee;
+          font-size: 0.9rem;
+          h5 {
+            margin-top: 5px;
+            font-size: 0.95rem;
+            font-weight: bold;
+          }
+          small {
+            font-size: 0.8rem;
+          }
+          div.initial {
+            margin-top: 5px;
+            background-color: #0471ee1e;
+            color: $primary;
+            height: 2.5rem;
+            width: 2.5rem;
+            border-radius: 0.5rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.35rem;
+            font-weight: bolder;
+          }
+          span {
+            text-decoration: underline;
+          }
+        }
+      }
+
+      section.connections {
+        margin-top: 2rem;
+        div.title {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          border-bottom: 1px solid #ddd;
+        }
+        div.scrollable {
+          height: 30rem;
+          overflow-y: auto;
+          padding-top: 0.5rem;
+          margin-top: 0.5rem;
+          div.body {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 0.25rem;
+            padding-bottom: 0.25rem;
+            h5 {
+              margin-top: 5px;
+              font-size: 0.95rem;
+              font-weight: bold;
+            }
+            span.status {
+              height: 0.75rem;
+              width: 0.75rem;
+              border-radius: 50%;
+              background-color: green;
+            }
+          }
+        }
+
+        div.search_bar {
+          margin: 1rem 0;
+          span.input-group-text {
+            background-color: transparent;
+            font-size: 0.9rem;
+            padding: 0.5rem 0.75rem;
+            &.br {
+              border-right: none;
+            }
+            &.bl {
+              border-left: none;
+            }
+          }
+          input.form-control {
+            background-color: transparent;
+
+            &.bl {
+              border-left: none;
+            }
+          }
+        }
+      }
+    }
+  }
+}

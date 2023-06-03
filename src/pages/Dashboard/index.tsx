@@ -1,5 +1,7 @@
 import { FC } from 'react'
 
+import DashboardLayout from "@/shared/DashboardLayout";
+
 interface IProps {}
 
 /**
@@ -9,7 +11,7 @@ interface IProps {}
 
 const Dashboard:FC<IProps> = () => {
   return (
-    <div>Dashboard</div>
+    <DashboardLayout>Dashboard</DashboardLayout>
    )
  }
 

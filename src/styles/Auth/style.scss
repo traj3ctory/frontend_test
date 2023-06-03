@@ -1,0 +1,67 @@
+section.auth_layout {
+  min-height: 100vh;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: $primary;
+  p.description {
+    color: $font_color;
+    margin-bottom: 0;
+    text-align: left;
+    line-height: 2rem;
+  }
+
+  div.form {
+    padding: 2rem 3rem;
+
+    div.title {
+      margin-bottom: 2rem;
+    }
+    p,
+    label,
+    input::placeholder {
+      color: darken($color: $font_color, $amount: 60);
+      font-size: 0.9rem;
+    }
+    a {
+      color: $primary;
+      font-size: 0.9rem;
+      text-decoration: none;
+    }
+    label {
+      margin-bottom: 0.75rem;
+    }
+    span {
+      color: $primary;
+      font-size: 0.9rem;
+    }
+  }
+}
+
+// ======= Media Query
+@media (max-width: 768px) {
+  section.auth_layout {
+    padding-top: 1rem;
+    padding-bottom: 1.5rem;
+
+    p.description {
+      margin-bottom: 1.5rem;
+      text-align: center;
+    }
+
+    div.form {
+      padding: 1.5rem;
+
+      label {
+        margin-bottom: 0.5rem;
+      }
+
+      p,
+      span {
+        font-size: 0.8rem;
+      }
+    }
+  }
+}

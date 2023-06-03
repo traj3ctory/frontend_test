@@ -1,0 +1,76 @@
+body {
+  font-family: $font_family;
+  margin: 0;
+  padding: 0;
+}
+
+.text_gray {
+  color: darken($color: $font_color, $amount: 60);
+}
+
+.cursor_pointer {
+  cursor: pointer;
+}
+
+section.not_found{
+  background-color: $primary;
+  min-height: 100vh;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  text-align: center;
+  a{
+    text-decoration: none;
+    color: #fff;
+    transition: all 0.3s ease-in-out;
+    &:hover{
+      text-decoration: underline;
+      margin-left: -0.5rem;
+    }
+  }
+}
+/*
+ * ====================
+ * Override Bootstrap Input
+ * ====================
+ */
+
+div.form-group { 
+  div.input-group {
+    span.input-group-text {
+      background-color: transparent;
+      font-size: 0.9rem;
+      padding: 0.5rem 0.75rem;
+      &.br {
+        border-right: none;
+      }
+      &.bl {
+        border-left: none;
+      }
+    }
+    input {
+      border-left: none;
+      border-color: $border_color;
+      background-color: transparent !important;
+      box-shadow: none;
+      &:focus,
+      &:active,
+      &:hover,
+      &:focus-visible,
+      &:focus-within {
+        box-shadow: none;
+        border-color: $border_color;
+        background-color: #fff;
+      }
+      &.br {
+        border-right: none;
+      }
+      &.bl {
+        border-left: none;
+      }
+    }
+  }
+}

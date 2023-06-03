@@ -2,7 +2,7 @@ import { FC, ReactNode } from "react";
 import Header from "./Header";
 import LeftSideNav from "./LeftSideNav";
 import RightSideNav from "./RightSideNav";
-import Footer from "./Footer";
+// import Footer from "./Footer";
 
 interface IProps {
   children: ReactNode;
@@ -15,15 +15,15 @@ interface IProps {
 
 const DashboardLayout: FC<IProps> = ({ children }) => {
   return (
-    <div>
+    <section className="dashboard_layout">
       <Header />
-      <div>
+      <div className="wrapper">
         <LeftSideNav />
-        <main>{children}</main>
+        <main className="content container-fluid">{children}</main>
         <RightSideNav />
       </div>
-      <Footer />
-    </div>
+      {/* <Footer /> */}
+    </section>
   );
 };
 
