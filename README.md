@@ -20,3 +20,14 @@ yarn || yarn install
 ```
 yarn start
 ```
+
+### Screenshots
+
+![image](./src/assets/SS1.png)
+![image](./src/assets/SS2.png)
+![image](./src/assets/SS3.png)
+![image](./src/assets/SS4.png)
+![image](./src/assets/SS5.png)
+![image](./src/assets/SS6.png)
+![image](./src/assets/SS7.png)
+![image](./src/assets/SS8.png)
